@@ -42,6 +42,11 @@ public class Main {
         scanner.close();
 	}
 	
+	
+	
+	
+	
+	
 	public static void crearProducto(ArrayList<Producto> productos, Scanner scanner) {
 	    System.out.println("Crear Producto");
 	    System.out.println("Ingrese el código del producto: ");
