@@ -1,6 +1,4 @@
 package ar.edu.unju.fi.ejercicio02.model;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import ar.edu.unju.fi.ejercicio02.constantes.*;
 public class Efemeride {
