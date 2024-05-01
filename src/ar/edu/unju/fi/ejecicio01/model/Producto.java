@@ -70,43 +70,7 @@ public class Producto {
         this.categoria = categoria;
     }
 
-		public static void modificarDescripcion(Producto producto, Scanner scanner) {
-		    System.out.print("Ingrese la nueva descripción: ");
-		    String nuevaDescripcion = scanner.next();
-		    producto.setDescripcion(nuevaDescripcion);
-		    System.out.println("Descripción modificada con éxito.");
-		}
 
-		public static void modificarPrecio(Producto producto, Scanner scanner) {
-		    System.out.print("Ingrese el nuevo precio unitario: ");
-		    double nuevoPrecio = scanner.nextDouble();
-		    producto.setPrecioUnitario(nuevoPrecio);
-		    System.out.println("Precio unitario modificado con éxito.");
-		}
-
-		public static void modificarOrigen(Producto producto, Scanner scanner) {
-		    System.out.println("Origen de fabricación:");
-		    for (Producto.OrigenFabricacion origen : Producto.OrigenFabricacion.values()) {
-		        System.out.println((origen.ordinal() + 1) + " - " + origen);
-		    }
-		    System.out.print("Elija una opción: ");
-		    int opcionOrigenModificar = scanner.nextInt();
-		    Producto.OrigenFabricacion nuevoOrigen = Producto.OrigenFabricacion.values()[opcionOrigenModificar - 1];
-		    producto.setOrigenFabricacion(nuevoOrigen);
-		    System.out.println("Origen de fabricación modificado con éxito.");
-		}
-
-		public static void modificarCategoria(Producto producto, Scanner scanner) {
-		    System.out.println("Categoría:");
-		    for (Producto.Categoria categoria : Producto.Categoria.values()) {
-		        System.out.println((categoria.ordinal() + 1) + " - " + categoria);
-		    }
-		    System.out.print("Elija una opción: ");
-		    int opcionCategoriaModificar = scanner.nextInt();
-		    Producto.Categoria nuevaCategoria = Producto.Categoria.values()[opcionCategoriaModificar - 1];
-		    producto.setCategoria(nuevaCategoria);
-		    System.out.println("Categoría modificada con éxito.");
-		}
 		
 		
 		public static void crearProducto(ArrayList<Producto> productos, Scanner scanner) {
@@ -194,7 +158,6 @@ public class Producto {
 		    }
 		
 
-
 		    if (productoModificar != null) {
 		        System.out.println("Qué desea modificar?");
 		        System.out.println("1 - Descripción");
@@ -204,6 +167,44 @@ public class Producto {
 		        System.out.print("Elija una opción: ");
 		        int opcionModificar = scanner.nextInt();
 		    	}
+		}
+		
+		public static void modificarDescripcion(Producto producto, Scanner scanner) {
+		    System.out.print("Ingrese la nueva descripción: ");
+		    String nuevaDescripcion = scanner.next();
+		    producto.setDescripcion(nuevaDescripcion);
+		    System.out.println("Descripción modificada con éxito.");
+		}
+
+		public static void modificarPrecio(Producto producto, Scanner scanner) {
+		    System.out.print("Ingrese el nuevo precio unitario: ");
+		    double nuevoPrecio = scanner.nextDouble();
+		    producto.setPrecioUnitario(nuevoPrecio);
+		    System.out.println("Precio unitario modificado con éxito.");
+		}
+
+		public static void modificarOrigen(Producto producto, Scanner scanner) {
+		    System.out.println("Origen de fabricación:");
+		    for (Producto.OrigenFabricacion origen : Producto.OrigenFabricacion.values()) {
+		        System.out.println((origen.ordinal() + 1) + " - " + origen);
+		    }
+		    System.out.print("Elija una opción: ");
+		    int opcionOrigenModificar = scanner.nextInt();
+		    Producto.OrigenFabricacion nuevoOrigen = Producto.OrigenFabricacion.values()[opcionOrigenModificar - 1];
+		    producto.setOrigenFabricacion(nuevoOrigen);
+		    System.out.println("Origen de fabricación modificado con éxito.");
+		}
+
+		public static void modificarCategoria(Producto producto, Scanner scanner) {
+		    System.out.println("Categoría:");
+		    for (Producto.Categoria categoria : Producto.Categoria.values()) {
+		        System.out.println((categoria.ordinal() + 1) + " - " + categoria);
+		    }
+		    System.out.print("Elija una opción: ");
+		    int opcionCategoriaModificar = scanner.nextInt();
+		    Producto.Categoria nuevaCategoria = Producto.Categoria.values()[opcionCategoriaModificar - 1];
+		    producto.setCategoria(nuevaCategoria);
+		    System.out.println("Categoría modificada con éxito.");
 		}
 }
 
