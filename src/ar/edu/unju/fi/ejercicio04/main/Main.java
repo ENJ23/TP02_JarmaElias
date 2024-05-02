@@ -23,13 +23,10 @@ public class Main {
 	        do {
 	            System.out.println("Menú:");
 	            System.out.println("1 - Alta de jugador");
-	            System.out.println("2 - Mostrar los datos del jugador");
-	            System.out.println("3 - Mostrar todos los jugadores ordenados por apellido");
-	            System.out.println("4 - Modificar los datos de un jugador");
-	            System.out.println("5 - Eliminar un jugador");
-	            System.out.println("6 - Mostrar la cantidad total de jugadores");
-	            System.out.println("7 - Mostrar la cantidad de jugadores por nacionalidad");
-	            System.out.println("8 - Salir");
+	            System.out.println("1 - Mostrar todos los jugadores");
+	            System.out.println("3 - Eliminar un jugador");
+	            System.out.println("4 - Modificar la posicion de un jugador");
+	            System.out.println("5 - Salir");
 	            System.out.print("Ingrese una opción: ");
 	            opcion = scanner.nextInt();
 
@@ -54,7 +51,7 @@ public class Main {
 	                    System.out.println("Opción inválida. Inténtelo de nuevo.");
 	            }
 
-	        } while (opcion != 8);
+	        } while (opcion != 5);
 	    }
 
 	    public static void altaJugador(ArrayList<Jugador> listaJugadores, Scanner scanner) {
@@ -101,39 +98,22 @@ public class Main {
 	        }
 	    }
 
-	    public static void mostrarDatosJugador(ArrayList<Jugador> listaJugadores, Scanner scanner) {
-	        System.out.print("Ingrese nombre del jugador: ");
-	        String nombre = scanner.next();
-	        System.out.print("Ingrese apellido del jugador: ");
-	        String apellido = scanner.next();
-
-	        for (Jugador jugador : listaJugadores) {
-	            if (jugador.getNombre().equalsIgnoreCase(nombre) && jugador.getApellido().equalsIgnoreCase(apellido)) {
-	                System.out.println("Datos del jugador:");
-	                System.out.println("Nombre: " + jugador.getNombre());
-	                System.out.println("Apellido: " + jugador.getApellido());
-	                System.out.println("Fechan de nacimiento: "+jugador.getFechaNacimiento());
-	                System.out.println("Peso del jugador: "+jugador.getPeso());
-	                System.out.println("Estatura del jugador: "+jugador.getEstatura());
-	                System.out.println("Nacionalidad: "+jugador.getNacionalidad());
-	                System.out.println("Posicion: "+jugador.getPosicion());
-	                
-	                return;
-	            }
-	        }
-	        System.out.println("Jugador no encontrado.");
-	    }
-
 	    public static void mostrarJugadoresOrdenados(ArrayList<Jugador> listaJugadores) {
 	        Collections.sort(listaJugadores, (j1, j2) -> j1.getApellido().compareToIgnoreCase(j2.getApellido()));
 	        for (Jugador jugador : listaJugadores) {
 	            System.out.println(jugador.getApellido() + ", " + jugador.getNombre());
+	            System.out.println("Fechan de nacimiento: "+jugador.getFechaNacimiento());
+                System.out.println("Peso del jugador: "+jugador.getPeso());
+                System.out.println("Estatura del jugador: "+jugador.getEstatura());
+                System.out.println("Nacionalidad: "+jugador.getNacionalidad());
+                System.out.println("Posicion: "+jugador.getPosicion());
+                
+
 	        }
 	    }
 
 	    public static void modificarPosicionJugador(ArrayList<Jugador> listaJugadores, Scanner scanner) {
 
-	    	int nuevaPosicion = 0;
 	    	System.out.print("Ingrese nombre del jugador a modificar: ");
 	        String nombre = scanner.next();
 	        System.out.print("Ingrese apellido del jugador a modificar: ");
@@ -146,25 +126,21 @@ public class Main {
 	                System.out.println("Posicion actual del jugador:");
 	                System.out.println(jugador.getPosicion());
 	                System.out.println("Ingrese la nueva posicion:");
-	           do {
-	                System.out.print("Nueva posición (1_delantero, 2_medio, 3_defensa, 4_arquero): ");
-	                nuevaPosicion = scanner.nextInt();
-	                if (nuevaPosicion < 1 | nuevaPosicion > 4) {
-	                	System.out.println("Ingrese la posicion nuevamente...");
-	                	nuevaPosicion = 0;
-	                }
-	                
-	                  
+	           
+	                System.out.print("Ingrese la nueva posición (DELANTERO, MEDIO, DEFENSA, ARQUERO): ");
+	                String nuevaPosicion = scanner.next();
+	                jugador.setPosicion(Posicion.valueOf(nuevaPosicion.toUpperCase()));
+	                System.out.println("Posición modificada con éxito.");
 
 	                System.out.println("¡Datos modificados con éxito!");
 	                encontrado = true;
 	                break;
 	            
-	           	}while(nuevaPosicion < 1 | nuevaPosicion > 4);
 	           }
-	        }
+	        
 	        if (!encontrado) {
 	            System.out.println("Jugador no encontrado.");
+	        	}
 	        }
 	    }
 
@@ -186,21 +162,6 @@ public class Main {
 	        System.out.println("Jugador no encontrado.");
 	    }
 
-	    public static void mostrarCantidadTotalJugadores(ArrayList<Jugador> listaJugadores) {
-	        System.out.println("Cantidad total de jugadores: " + listaJugadores.size());
-	    }
-
-	    public static void mostrarCantidadJugadoresPorNacionalidad(ArrayList<Jugador> listaJugadores, Scanner scanner) {
-	        System.out.print("Ingrese la nacionalidad a buscar: ");
-	        String nacionalidad = scanner.next();
-	        int count = 0;
-	        for (Jugador jugador : listaJugadores) {
-	            if (jugador.getNacionalidad().equalsIgnoreCase(nacionalidad)) {
-	                count++;
-	            }
-	        }
-	        System.out.println("Cantidad de jugadores de la nacionalidad " + nacionalidad + ": " + count);
-	    }
 	}
 
 
