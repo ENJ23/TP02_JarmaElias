@@ -81,8 +81,9 @@ public class Main {
 	            System.out.print("Peso: ");
 	            double peso = scanner.nextDouble();
 
-	            System.out.print("Posición (delantero, medio, defensa, arquero): ");
-	            Posicion posicion = scanner.next();
+	            System.out.print("Posición (1_delantero, 2_medio, 3_defensa, 4_arquero): ");
+	            int numPosicion = scanner.nextInt();
+	            Posicion posicion = Posicion.values()[numPosicion -1]; 
 
 	            Jugador nuevoJugador = new Jugador(nombre, apellido, fechaNacimiento, nacionalidad, estatura, peso, posicion);
 	            listaJugadores.add(nuevoJugador);
@@ -131,56 +132,37 @@ public class Main {
 	    }
 
 	    public static void modificarPosicionJugador(ArrayList<Jugador> listaJugadores, Scanner scanner) {
-	        System.out.print("Ingrese nombre del jugador a modificar: ");
+
+	    	int nuevaPosicion = 0;
+	    	System.out.print("Ingrese nombre del jugador a modificar: ");
 	        String nombre = scanner.next();
 	        System.out.print("Ingrese apellido del jugador a modificar: ");
 	        String apellido = scanner.next();
-
+			
 	        boolean encontrado = false;
-
+	        
 	        for (Jugador jugador : listaJugadores) {
 	            if (jugador.getNombre().equalsIgnoreCase(nombre) && jugador.getApellido().equalsIgnoreCase(apellido)) {
-	                System.out.println("Datos actuales del jugador:");
-	                System.out.println(jugador);
-
-	                System.out.println("Ingrese los nuevos datos:");
-
-	                System.out.print("Nuevo nombre: ");
-	                String nuevoNombre = scanner.next();
-	                jugador.setNombre(nuevoNombre);
-
-	                System.out.print("Nuevo apellido: ");
-	                String nuevoApellido = scanner.next();
-	                jugador.setApellido(nuevoApellido);
-
-	                System.out.print("Nueva fecha de nacimiento (formato dd-MM-yyyy): ");
-	                String nuevaFechaNacimientoStr = scanner.next();
-	                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	                LocalDate nuevaFechaNacimiento = LocalDate.parse(nuevaFechaNacimientoStr, formatter);
-	                jugador.setFechaNacimiento(nuevaFechaNacimiento);
-
-	                System.out.print("Nueva nacionalidad: ");
-	                String nuevaNacionalidad = scanner.next();
-	                jugador.setNacionalidad(nuevaNacionalidad);
-
-	                System.out.print("Nueva estatura: ");
-	                double nuevaEstatura = scanner.nextDouble();
-	                jugador.setEstatura(nuevaEstatura);
-
-	                System.out.print("Nuevo peso: ");
-	                double nuevoPeso = scanner.nextDouble();
-	                jugador.setPeso(nuevoPeso);
-
-	                System.out.print("Nueva posición (delantero, medio, defensa, arquero): ");
-	                String nuevaPosicion = scanner.next();
-	                jugador.setPosicion(nuevaPosicion);
+	                System.out.println("Posicion actual del jugador:");
+	                System.out.println(jugador.getPosicion());
+	                System.out.println("Ingrese la nueva posicion:");
+	           do {
+	                System.out.print("Nueva posición (1_delantero, 2_medio, 3_defensa, 4_arquero): ");
+	                nuevaPosicion = scanner.nextInt();
+	                if (nuevaPosicion < 1 | nuevaPosicion > 4) {
+	                	System.out.println("Ingrese la posicion nuevamente...");
+	                	nuevaPosicion = 0;
+	                }
+	                
+	                  
 
 	                System.out.println("¡Datos modificados con éxito!");
 	                encontrado = true;
 	                break;
-	            }
+	            
+	           	}while(nuevaPosicion < 1 | nuevaPosicion > 4);
+	           }
 	        }
-
 	        if (!encontrado) {
 	            System.out.println("Jugador no encontrado.");
 	        }
