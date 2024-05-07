@@ -2,16 +2,20 @@ package ar.edu.unju.fi.ejercicio05.main;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import ar.edu.unju.fi.ejecicio01.model.Producto;
 import ar.edu.unju.fi.ejercicio05.model.*;
+import ar.edu.unju.fi.ejercicio05.model.Producto;
+import ar.edu.unju.fi.ejercicio05.model.Producto.Categoria;
+import ar.edu.unju.fi.ejercicio05.model.Producto.OrigenFabricacion;
 
 
 public class Main {
+
     public static void main(String[] args) {
         ArrayList<Producto> productos = new ArrayList<>();
         // Precarga de productos en el ArrayList "productos"
 
+        precargarProductos(productos);
+        
         Scanner scanner = new Scanner(System.in);
 
         int opcion = 0;
@@ -85,4 +89,18 @@ public class Main {
             System.out.println("Opción de pago inválida.");
         }
     }
+    
+    private static void precargarProductos(ArrayList<Producto> productos) {
+    	productos.add(new Producto("001", "Producto A", 100.50, OrigenFabricacion.ARGENTINA, Categoria.ELECTROHOGAR, true));
+        productos.add(new Producto("002", "Producto B", 75.25, OrigenFabricacion.ARGENTINA, Categoria.ELECTROHOGAR, true));
+        productos.add(new Producto("003", "Producto C", 150.80, OrigenFabricacion.ARGENTINA, Categoria.ELECTROHOGAR, true));
+        productos.add(new Producto("004", "Producto D", 200.00, OrigenFabricacion.ARGENTINA, Categoria.INFORMATICA, true));
+        productos.add(new Producto("005", "Producto E", 120.30, OrigenFabricacion.BRASIL, Categoria.INFORMATICA, true));
+        productos.add(new Producto("006", "Producto F", 90.75, OrigenFabricacion.ARGENTINA, Categoria.INFORMATICA, true));
+        productos.add(new Producto("007", "Producto G", 180.60, OrigenFabricacion.BRASIL, Categoria.TELEFONIA, true));
+        productos.add(new Producto("008", "Producto H", 95.20, OrigenFabricacion.BRASIL, Categoria.TELEFONIA, true));
+        productos.add(new Producto("009", "Producto I", 210.40, OrigenFabricacion.BRASIL, Categoria.TELEFONIA, true));
+        productos.add(new Producto("010", "Producto J", 110.90, OrigenFabricacion.CHINA, Categoria.TELEFONIA, true));
+    }
+    
 }
