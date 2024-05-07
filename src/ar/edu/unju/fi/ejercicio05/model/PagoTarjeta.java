@@ -1,9 +1,10 @@
 package ar.edu.unju.fi.ejercicio05.model;
 
-import ar.edu.unju.fi.ejercicio05.interfaz.*;
 import java.time.LocalDate;
 
-public class PagoTarjeta {
+import ar.edu.unju.fi.ejercicio05.interfaz.Pago;
+
+public class PagoTarjeta implements Pago {
 	
 	    private String numeroTarjeta;
 	    private LocalDate fechaPago;
