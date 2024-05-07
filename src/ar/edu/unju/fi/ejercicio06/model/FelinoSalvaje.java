@@ -5,6 +5,18 @@ public class FelinoSalvaje {
 	private byte edad;
 	private float peso;
 	
+	
+	public FelinoSalvaje () {
+		
+	}
+	
+	public FelinoSalvaje(String nombre, byte edad, float peso) {
+		super();
+		this.nombre = nombre;
+		this.edad = edad;
+		this.peso = peso;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -23,4 +35,11 @@ public class FelinoSalvaje {
 	public void setPeso(float peso) {
 		this.peso = peso;
 	}
+
+	@Override
+	public String toString() {
+		return "FelinoSalvaje [nombre=" + nombre + ", edad=" + edad + ", peso=" + peso + "]";
+	}
+	
+	
 }

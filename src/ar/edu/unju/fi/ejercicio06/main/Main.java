@@ -6,43 +6,32 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		FelinoDomestico gato = new FelinoDomestico();
-        gato.setNombre("Tanner");
-        gato.setEdad((byte) 20);
-        gato.setPeso(186);
-
+		FelinoDomestico gato = new FelinoDomestico("garfiel", (byte)45, 12f);
+		//definición de expresión lambda que define el convertidor de FelinoDomestico a
+		//FelinoSalvaje.
+		Converter<FelinoDomestico, FelinoSalvaje> converter = x -> new FelinoSalvaje(x.getNombre(),
+		x.getEdad(), x.getPeso());
+		//se realiza la conversión
+		FelinoSalvaje felino1 = converter.convert(gato);
+		//mostramos los datos del objeto felino salvaje felino1
+		converter.mostrarObjeto(felino1);
 		
+		FelinoSalvaje gato2 = new FelinoSalvaje("Tunner", (byte)20, 186f);
+		if (Converter.isNotNull(gato2)) {
+		Converter<FelinoSalvaje, FelinoDomestico> converter2 = x -> new FelinoDomestico(x.getNombre(),
+		x.getEdad(), x.getPeso());
+		//se realiza la conversión
+		FelinoDomestico felino2 = converter2.convert(gato2);
+		//mostramos los datos del objeto felino salvaje felino1
+		converter2.mostrarObjeto(felino2);
+		}
+		else {
+			System.out.println("El objeto es nulo");
+		}
 		
-		
-		
-		
-		FelinoSalvaje leon = new FelinoSalvaje();
-        leon.setNombre("Tanner");
-        leon.setEdad((byte) 20);
-        leon.setPeso(186);
-
-        // Verificar si el objeto a convertir no es nulo utilizando el método estático isNotNull()
-        if (Converter.isNotNull(leon)) {
-            // Definición de la expresión lambda que convierte FelinoSalvaje a FelinoDomestico
-            Converter<FelinoSalvaje, FelinoDomestico> converter = x -> {
-                FelinoDomestico felinoDomestico = new FelinoDomestico();
-                felinoDomestico.setNombre(x.getNombre());
-                felinoDomestico.setEdad(x.getEdad());
-                felinoDomestico.setPeso(x.getPeso());
-                return felinoDomestico;
-            };
-
-            // Realizar la conversión
-            FelinoDomestico leonDomestico = converter.convert(leon);
-
-            // Mostrar los datos del objeto FelinoDomestico
-            converter.mostrarObjeto(leonDomestico);
-        } else {
-            System.out.println("El objeto a convertir es nulo.");
-        }
-    }
 
 		
 	}
+}
 
 
