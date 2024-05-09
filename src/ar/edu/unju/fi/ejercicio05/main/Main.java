@@ -55,7 +55,30 @@ public class Main {
 
     private static ArrayList<Producto> seleccionarProductos(Scanner scanner, ArrayList<Producto> productos) {
         ArrayList<Producto> productosComprados = new ArrayList<>();
-        // Lógica para que el usuario seleccione los productos a comprar
+        
+        System.out.println("Seleccione los productos a comprar:");
+        mostrarProductos(productos);
+
+        System.out.print("Ingrese el código del producto a comprar (0 para finalizar): ");
+        String codigo = scanner.next();
+
+        while (!codigo.equals("0")) {
+            boolean encontrado = false;
+            for (Producto producto : productos) {
+                if (producto.getCodigo().equals(codigo)) {
+                    productosComprados.add(producto);
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                System.out.println("Producto no encontrado. Por favor, ingrese un código válido.");
+            }
+
+            System.out.print("Ingrese el código del producto a comprar (0 para finalizar): ");
+            codigo = scanner.next();
+        }
+
         return productosComprados;
     }
 
@@ -69,7 +92,9 @@ public class Main {
 
     private static double calcularTotal(ArrayList<Producto> productosComprados) {
         double total = 0;
-        // Calcular el total de los productos seleccionados
+        for (Producto producto : productosComprados) {
+            total += producto.getPrecioUnitario();
+        }
         return total;
     }
 
